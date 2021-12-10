@@ -1,0 +1,50 @@
+{
+	"name": "clone_bts_digital",
+	"version": "1.0.0",
+	"private": true,
+	"keywords": [
+		"clone"
+	],
+	"author": {
+		"name": "Yernar.T",
+		"email": "toktaryernar@gmail.com",
+		"url": "https://github.com/YernarT"
+	},
+	"bugs": {
+		"url": "https://github.com/YernarT/assignment_2021_12_12/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/YernarT/assignment_2021_12_12"
+	},
+	"dependencies": {
+		"ahooks": "^3.0.1",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-icons": "^4.3.1",
+		"react-scripts": "4.0.3",
+		"styled-components": "^5.3.3"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
+}
