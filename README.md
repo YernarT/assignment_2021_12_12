@@ -1,7 +1,3 @@
-# assignment_2021_11_25
+# assignment_2021_12_12
 
-> Выполняйте упражнения по раскладке флаттера в первый раз :)
-
-### result
-
-<img src="./result_imgs/list-page.png" alt="result" />
+> Clone [BTS·Digital](https://btsdigital.kz/)
