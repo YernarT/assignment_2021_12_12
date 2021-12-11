@@ -11,9 +11,7 @@ import './assets/style/customize.css';
 // responsive breakpoints
 configResponsive({
 	small: 0,
-	middle: 585,
-	large: 992,
-	big: 1200,
+	middle: 801,
 });
 
 // global state: language code
