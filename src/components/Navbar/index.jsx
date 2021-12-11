@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useMemo, useCallback } from 'react';
+
+import { LanguageContext } from '../../App';
 
 import { useResponsive, useCreation } from 'ahooks';
 
@@ -12,35 +14,82 @@ import {
 export default function Navbar() {
 	const responsive = useResponsive();
 
-	// links for navigation
-	const links = useCreation(
-		() => [
-			{ href: '#products', text: 'Продукты' },
-			{ href: '#null', text: 'Партнерам' },
-			{ href: '#null', text: 'О нас' },
-			{ href: '#vacancies', text: 'Карьера' },
-			{ href: '#contacts', text: 'Контакты' },
-		],
-		[],
-	);
+	const linksList = useCreation(() => [
+		{
+			lang: 'ru',
+			links: [
+				{ href: '#products', text: 'Продукты' },
+				{ href: '#null', text: 'Партнерам' },
+				{ href: '#null', text: 'О нас' },
+				{ href: '#vacancies', text: 'Карьера' },
+				{ href: '#contacts', text: 'Контакты' },
+			],
+		},
+		{
+			lang: 'kz',
+			links: [
+				{ href: '#products', text: 'Өнімдеріміз' },
+				{ href: '#null', text: 'Әріптестерге' },
+				{ href: '#null', text: 'Біз туралы' },
+				{ href: '#vacancies', text: 'Мансап' },
+				{ href: '#contacts', text: 'Байланыстар' },
+			],
+		},
+		{
+			lang: 'en',
+			links: [
+				{ href: '#products', text: 'Products' },
+				{ href: '#null', text: 'For patners' },
+				{ href: '#null', text: 'About us' },
+				{ href: '#vacancies', text: 'Carrer' },
+				{ href: '#contacts', text: 'Contact us' },
+			],
+		},
+	]);
 
 	// languages to switch
 	const languages = useCreation(() => ['en', 'ru', 'kz'], []);
 
+	const [lang, setLang] = useContext(LanguageContext);
+
+	// links for navigation
+	const currentLinksData = useMemo(
+		() => linksList.find(linkData => linkData.lang === lang),
+		[lang, linksList],
+	);
+
+	// change language
+	const handleChangeLanguage = useCallback(
+		_lang => {
+			if (_lang !== lang) {
+				setLang(_lang);
+			}
+		},
+		[lang, setLang],
+	);
+
 	return responsive.middle ? (
-		<DesktopNavbar links={links} languages={languages} />
+		<DesktopNavbar
+			currentLinksData={currentLinksData}
+			languages={languages}
+			handleChangeLanguage={handleChangeLanguage}
+		/>
 	) : (
-		<MobileNavbar links={links} languages={languages} />
+		<MobileNavbar
+			currentLinksData={currentLinksData}
+			languages={languages}
+			handleChangeLanguage={handleChangeLanguage}
+		/>
 	);
 }
 
-function DesktopNavbar({ links, languages }) {
+function DesktopNavbar({ currentLinksData, languages, handleChangeLanguage }) {
 	return (
 		<DesktopNavbarContainer>
 			<img src={logoMain} alt="BTSDigital logo" className="logo" />
 
 			<ul className="links">
-				{links.map((link, idx) => (
+				{currentLinksData.links.map((link, idx) => (
 					<li key={idx} className="link">
 						<a href={link.href}>{link.text}</a>
 					</li>
@@ -49,7 +98,10 @@ function DesktopNavbar({ links, languages }) {
 
 			<ul className="languages">
 				{languages.map((language, idx) => (
-					<li key={idx} className="language">
+					<li
+						key={idx}
+						className="language"
+						onClick={() => handleChangeLanguage(language)}>
 						{language}
 					</li>
 				))}
@@ -58,8 +110,26 @@ function DesktopNavbar({ links, languages }) {
 	);
 }
 
-function MobileNavbar({ links, languages }) {
+function MobileNavbar({ currentLinksData, languages, handleChangeLanguage }) {
 	const [navigationNavVisibile, setNavigationNavVisibile] = useState(false);
+
+	const _handleChangeLanguage = useCallback(
+		lang => {
+			setNavigationNavVisibile(false);
+			handleChangeLanguage(lang);
+		},
+		[setNavigationNavVisibile, handleChangeLanguage],
+	);
+
+	const handleItemClick = useCallback(
+		e => {
+			e.preventDefault();
+
+			setNavigationNavVisibile(false);
+			window.location.hash = e.target.hash;
+		},
+		[setNavigationNavVisibile],
+	);
 
 	return (
 		<MobileNavbarContainer>
@@ -90,16 +160,21 @@ function MobileNavbar({ links, languages }) {
 				</header>
 
 				<ul className="links">
-					{links.map((link, idx) => (
+					{currentLinksData.links.map((link, idx) => (
 						<li key={idx} className="link">
-							<a href={link.href}>{link.text}</a>
+							<a href={link.href} onClick={handleItemClick}>
+								{link.text}
+							</a>
 						</li>
 					))}
 				</ul>
 
 				<ul className="languages">
 					{languages.map((language, idx) => (
-						<li key={idx} className="language">
+						<li
+							key={idx}
+							className="language"
+							onClick={() => _handleChangeLanguage(language)}>
 							{language}
 						</li>
 					))}
