@@ -18,6 +18,14 @@ const typography = {
 		fontSize: '1.6rem',
 		fontWeight: '400',
 	},
+
+	link: {
+		color: '#222',
+		fontSize: '0.87rem',
+		fontWeight: '500',
+
+		textDecoration: 'none',
+	},
 };
 
 export default typography;
