@@ -1,14 +1,31 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
+
+import { LanguageContext } from '../../App';
 
 import { Navbar, Intro, Products } from '../../components';
-
-import { useTitle } from 'ahooks';
 
 import { HomePageContainer } from './style';
 
 export default function HomePage() {
+	const [lang] = useContext(LanguageContext);
+
 	// set <title> Title </title>
-	useTitle('Главная');
+	useEffect(() => {
+		switch (lang) {
+			case 'ru':
+				document.title = 'Главная';
+				break;
+			case 'kz':
+				document.title = 'Басты бет';
+				break;
+			case 'en':
+				document.title = 'Main Page';
+				break;
+			default:
+				document.title = 'Главная';
+				break;
+		}
+	}, [lang]);
 
 	return (
 		<HomePageContainer>
