@@ -1,16 +1,14 @@
 const typography = {
 	title: {
 		color: '#000',
-		fontSize: '5rem',
-		fontWeight: '900',
-
-		whiteSpace: 'nowrap',
+		fontSize: '2.4rem',
+		fontWeight: '700',
 	},
 
 	text: {
 		color: '#000',
-		fontSize: '2rem',
-		fontWeight: '400',
+		fontSize: '0.94rem',
+		fontWeight: '500',
 	},
 
 	secondary: {
