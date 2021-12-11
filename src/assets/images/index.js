@@ -7,6 +7,7 @@ export { default as kassa24 } from './kassa24.svg';
 export { default as suraqtar } from './suraqtar.svg';
 
 export { default as pix } from './pix.svg';
+export { default as circleBackground } from './circle-background.svg';
 
 export { default as team1 } from './team-1.jpg';
 export { default as team3 } from './team-3.png';
