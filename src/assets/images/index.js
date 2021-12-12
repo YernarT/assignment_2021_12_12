@@ -2,9 +2,10 @@ export { default as logoMain } from './logo-main.svg';
 
 export { default as aitu } from './aitu.svg';
 export { default as did } from './did.svg';
+export { default as aitupay } from './aitupay.svg';
+export { default as suraqtar } from './suraqtar.svg';
 export { default as dosmart } from './dosmart.svg';
 export { default as kassa24 } from './kassa24.svg';
-export { default as suraqtar } from './suraqtar.svg';
 
 export { default as pix } from './pix.svg';
 export { default as circleBackground } from './circle-background.svg';
