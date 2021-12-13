@@ -2,7 +2,15 @@ import React, { useEffect, useContext } from 'react';
 
 import { LanguageContext } from '../../App';
 
-import { Navbar, Intro, Products } from '../../components';
+import {
+	Navbar,
+	Intro,
+	Products,
+	Team,
+	ChangeWorld,
+	Vacancies,
+	Contact,
+} from '../../components';
 
 import { HomePageContainer } from './style';
 
@@ -32,6 +40,10 @@ export default function HomePage() {
 			<Navbar />
 			<Intro />
 			<Products />
+			<Team />
+			<ChangeWorld />
+			<Vacancies />
+			<Contact />
 		</HomePageContainer>
 	);
 }
