@@ -13,7 +13,7 @@ const typography = {
 
 	secondary: {
 		color: '#7a7a7a',
-		fontSize: '1.6rem',
+		fontSize: '0.85rem',
 		fontWeight: '400',
 	},
 
